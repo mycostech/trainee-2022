@@ -3,6 +3,7 @@
 ### HTTP
 
 #### Methods
+|Http   |URL                    |Payload                                        |
 |:------|:----------------------|:----------------------------------------------|
 |GET    |/api/todo              |                                               |
 |GET    |/api/todo              |                                               |
@@ -18,19 +19,21 @@
 #### Response
 
 Went Success
-|:------|:--|
-|GET    |200|
-|POST   |200|
-|POST   |201|
-|PUT    |200|
-|DELETE |204|
+|Http   |Code|
+|:------|:---|
+|GET    |200 |
+|POST   |200 |
+|POST   |201 |
+|PUT    |200 |
+|DELETE |204 |
 
 
 Went wrong
-|:--|:--------------------------------------------------|
-|400| Bad Request: user error, invalid payload          |
-|401| Unauthorized: invalid credential, not logged in   |
-|403| Forbidden: user accessing admin panel             |
-|404| Not Found: GET request on deleted content         |
-|409| Conflict: modify deleted content                  |
-|500| Internal Server Error: code throw exception       |
+|Code|Description                                        |
+|:---|:--------------------------------------------------|
+|400 | Bad Request: user error, invalid payload          |
+|401 | Unauthorized: invalid credential, not logged in   |
+|403 | Forbidden: user accessing admin panel             |
+|404 | Not Found: GET request on deleted content         |
+|409 | Conflict: modify deleted content                  |
+|500 | Internal Server Error: code throw exception       |
