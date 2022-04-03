@@ -1,8 +1,10 @@
 ## API
 
-## HTTP
+### HTTP
 
-# Methods
+#### Methods
+|:------|:----------------------|:----------------------------------------------|
+|GET    |/api/todo              |                                               |
 |GET    |/api/todo              |                                               |
 |GET    |/api/todo/{id}         |                                               |
 |GET    |/api/todo/{id}/{id_t}  |                                               |
@@ -13,9 +15,10 @@
 |DELETE |/api/todo/{id}         |                                               |
 |DELETE |/api/todo/{id}/{id_t}  |                                               |
 
-# Response
+#### Response
 
 Went Success
+|:------|:--|
 |GET    |200|
 |POST   |200|
 |POST   |201|
@@ -24,6 +27,7 @@ Went Success
 
 
 Went wrong
+|:--|:--------------------------------------------------|
 |400| Bad Request: user error, invalid payload          |
 |401| Unauthorized: invalid credential, not logged in   |
 |403| Forbidden: user accessing admin panel             |
