@@ -97,6 +97,22 @@ Start the server
 
 ## API Reference
 
+### **Response Code Reference**
+
+| Code |      Description      |
+| :--: | :-------------------: |
+| 200  |        Success        |
+| 400  |      Bad Request      |
+| 401  |     Unauthorized      |
+| 403  |       Forbidden       |
+| 404  |       Not Found       |
+| 500  | Internal Server Error |
+
+### **Important Note**
+
+Most of the time, the response code will be 200.\
+But will return with success false if there is any error.
+
 ### **API for testing server status**
 
 ```http
