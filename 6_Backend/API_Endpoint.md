@@ -114,13 +114,6 @@ PATCH /api/todoList/{td_id}
 ```http
 PATCH /api/todoList/{td_id}/{t_id}
 ```
-| Request Body         | Response Body                                                                      | Description                               |
-| :------------------- | :--------------------------------------------------------------------------------- | :---------------------------------------- |
-| {status, start_date} | {t_id, t_name, status, t_description, start_date, due_date, complete_date, td_id}  | Modify status and start_date of that task |
-
-```http
-PATCH /api/todoList/{td_id}/{t_id}
-```
 | Request Body            | Response Body                                                                      | Description                                  |
 | :---------------------- | :--------------------------------------------------------------------------------- | :------------------------------------------- |
 | {status, complete_date} | {t_id, t_name, status, t_description, start_date, due_date, complete_date, td_id}  | Modify status and complete_date of that task |
