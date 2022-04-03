@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "74d06ce2-2308-4b96-885b-4f5ce372374e": {
+      "ProjectGuid": "74d06ce2-2308-4b96-885b-4f5ce372374e",
+      "DisplayName": "todoapp-api",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
