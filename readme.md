@@ -22,7 +22,6 @@ Response body : `[{id, ProfileName, Status, Date}, ...]`
 | Response code |       Description        |
 | :-----------: | :----------------------: |
 |      200      | Get Content Successfully |
-|      400      |       Bad Request        |
 |      404      |    Content Not Found     |
 
 #### API for receiving user's all Tweets from Profile name
@@ -36,7 +35,6 @@ Response body : `[{id, ProfileName, Status, Date}, ...]`
 | Response code |       Description        |
 | :-----------: | :----------------------: |
 |      200      | Get Content Successfully |
-|      400      |       Bad Request        |
 |      404      |    Content Not Found     |
 
 #### API for receiving a specific Tweet from Tweet id
@@ -50,7 +48,6 @@ Response body : `{id, ProfileName, Status, Date}`
 | Response code |       Description        |
 | :-----------: | :----------------------: |
 |      200      | Get Content Successfully |
-|      400      |       Bad Request        |
 |      404      |    Content Not Found     |
 
 #### API for inputing a new Tweet from profile name (only specific user)
@@ -67,7 +64,7 @@ Response body : `{id}`
 | :-----------: | :-----------------------------: |
 |      201      | Create New Content Successfully |
 |      400      |           Bad Request           |
-|      409      |         Data Not Found          |
+|      409      |         Conflict Content        |
 
 #### API for editing a specific Tweet from profile name (only specific user)
 
@@ -82,7 +79,7 @@ Response body : `{id, Status, Date}`
 | Response code |         Description         |
 | :-----------: | :-------------------------: |
 |      200      | Modify Content Successfully |
-|      400      |         Bad Request         |
+|      400      |           Bad Request       |
 
 #### API for deleting a specific Tweet from Tweet id (only specific user)
 
@@ -93,7 +90,6 @@ Response body : `{id, Status, Date}`
 | Response code |               Description                |
 | :-----------: | :--------------------------------------: |
 |      204      | Delete Content Successfully (No content) |
-|      400      |               Bad Request                |
 |      500      |           Code Throw Exception           |
 
 #### API for deleting all Tweets from Tweet id (only specific user)
@@ -105,7 +101,6 @@ Response body : `{id, Status, Date}`
 | Response code |               Description                |
 | :-----------: | :--------------------------------------: |
 |      204      | Delete Content Successfully (No content) |
-|      400      |               Bad Request                |
 |      500      |           Code Throw Exception           |
 
   
