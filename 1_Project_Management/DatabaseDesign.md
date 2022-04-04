@@ -47,10 +47,11 @@
 | level (PK) | `int`    | Mood level                                                   |
 | name       | `string` | Mood name (level 1 = Sad, 2 = Exhausted, 3 = So-so, 4 = Good, 5 = Great) |
 
-#### HaveMood
+#### EmployeeMood
 
-| Attribute         | Type       | Description                                         |
-| ----------------- | ---------- | --------------------------------------------------- |
-| moodDateTime (PK) | `dateTime` | Date time when the system tracking employee's mood. |
-| id (FK)           | `int`      | Employee's identify number                          |
-| level (FK)        | `int`      | Mood level                                          |
+| Attribute       | Type       | Description                                         |
+| --------------- | ---------- | --------------------------------------------------- |
+| id(PK)          | `int`      | Employee Mood's identify number                     |
+| dateTime        | `dateTime` | Date time when the system tracking employee's mood. |
+| employeeId (FK) | `int`      | Employee's identify number                          |
+| level (FK)      | `int`      | Mood level                                          |
