@@ -50,10 +50,10 @@ Response body : `{id, ProfileName, Status, Date}`
 |      200      | Get Content Successfully |
 |      404      |    Content Not Found     |
 
-#### API for inputing a new Tweet from profile name (only specific user)
+#### API for inputing a new Tweet (only specific user)
 
 ```http
-    POST /api/users/{ProfileName}
+    POST /api/users
 ```
 
 Request body : `{id, ProfileName, Status, Date}`
@@ -69,7 +69,7 @@ Response body : `{id}`
 #### API for editing a specific Tweet from profile name (only specific user)
 
 ```http
-    PATCH /api/users/{ProfileName}/tweets/{id} 
+    PUT /api/users/{ProfileName}/tweets/{id} 
 ```
 
 Request body : `{Status, Date}`
