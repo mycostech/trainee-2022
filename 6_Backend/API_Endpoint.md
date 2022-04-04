@@ -76,13 +76,6 @@ PUT /api/todoList/{td_id}/comments/{cm_id}
 
 ### Method `DELETE`
 ```http
-DELETE /api/todoList/
-```
-| Request Body                                  | Response Body                                 | Description                        |
-| :-------------------------------------------- | :-------------------------------------------- | :--------------------------------- |
-|                                               |                                               | Delete all todos                   |
-
-```http
 DELETE /api/todoList/{td_id}
 ```
 | Request Body                                  | Response Body                                 | Description                        |
