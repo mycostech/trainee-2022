@@ -1,17 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace todoapp_api.Models
 {
-    public class User
+    public class User : IdentityUser<int>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public override int Id { get; set; }
         [StringLength(50)]
         public string? Name { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
         [ForeignKey("FK_User_Item")]
         public List<Item>? Items { get; set; }
     }
