@@ -278,3 +278,10 @@ C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Mic
 C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\todoapp-api.staticwebassets.runtime.json
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\SendGrid.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\StarkbankEcdsa.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\obj\Debug\net6.0\todoapp-api.csproj.CopyComplete
