@@ -272,3 +272,9 @@ C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\obj\Debug\net6.0\tod
 C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\obj\Debug\net6.0\ref\todoapp-api.dll
 C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\obj\Debug\net6.0\todoapp-api.pdb
 C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\obj\Debug\net6.0\todoapp-api.genruntimeconfig.cache
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\timez\Desktop\trainee-2022\todoapp-api\todoapp-api\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
