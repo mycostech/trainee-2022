@@ -14,6 +14,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using todoapp_api.Models.Auth;
 using System.Text;
+using todoapp_api.Services;
 
 namespace todoapp_api.Controllers
 {
@@ -56,6 +57,8 @@ namespace todoapp_api.Controllers
 
                 return Ok(new
                 {
+                    Success = true,
+                    Message = "Successfully login",
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo
                 });
@@ -82,6 +85,39 @@ namespace todoapp_api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = "User creation failed! Please check user details and try again." });
 
             return Ok(new Response { Success = true, Message = "User created successfully!" });
+        }
+
+        [HttpPost]
+        [Route("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPassword model)
+        {
+            var userExists = await _userManager.FindByEmailAsync(model.Email);
+            if (userExists == null)
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Success = false, Message = "User does not exist" });
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(userExists);
+            var passwordResetLink = Url.Action("ResetPassword", "Auth", new { email = model.Email, token = token }, Request.Scheme);
+            
+            // EmailSender.SendEmailAsync() // this should be implement to send email to user
+            //
+            //
+
+            return Ok(new { Success = true, Message = "Successfully send the reset password link to " + model.Email , Link = passwordResetLink, Token = token});
+        }
+
+        [HttpPost]
+        [Route("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordBody body, [FromQuery] ResetPasswordQuery query)
+        {
+            var user = await _userManager.FindByEmailAsync(query.Email);
+            if (user == null)
+                return BadRequest(new Response { Success = false, Message = "User does not exist" });
+            if (body.Password != body.ConfirmPassword)
+                return BadRequest(new Response { Success = false, Message = "Password does not match" });
+            var result = await _userManager.ResetPasswordAsync(user, query.Token, body.Password);
+            if (!result.Succeeded)
+                return BadRequest(new { Success = false, Error = result.Errors });
+            return Ok(new Response { Success = true, Message = "Successfully reset the password"});
         }
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
