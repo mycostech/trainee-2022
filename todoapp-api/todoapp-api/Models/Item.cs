@@ -10,6 +10,7 @@ namespace todoapp_api.Models
         IN_PROGRESS,
         DONE
     }
+
     public class Item
     {
         [Key]
