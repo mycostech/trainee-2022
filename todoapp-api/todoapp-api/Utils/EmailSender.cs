@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-namespace todoapp_api.Services
+namespace todoapp_api.Utils
 {
     public class EmailSender : IEmailSender
     {

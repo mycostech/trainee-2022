@@ -6,8 +6,7 @@ using todoapp_api.Data;
 using todoapp_api.Models;
 using todoapp_api.Contract.Task;
 using todoapp_api.Utils;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using todoapp_api.Services.Interfaces;
 
 namespace todoapp_api.Controllers
 {
@@ -16,43 +15,42 @@ namespace todoapp_api.Controllers
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private readonly todoapp_apiContext _context;
+        private readonly ITaskService _taskService;
 
-        public TaskController(todoapp_apiContext context)
+        public TaskController(ITaskService taskService)
         {
-            _context = context;
+            _taskService = taskService;
         }
 
         [HttpPost]
         [Route("create")]
         public async Task<IActionResult> Create([FromBody] ItemModel model)
         {
-            if (string.IsNullOrEmpty(model.Title))
-                return BadRequest(new Response { Success = false, Message = "Title is required"});
-
-            var todoItem = new Item
-            {
-                UserId = User.GetLoggedInUserId(),
-                Title = model.Title,
-                Description = model.Description ?? "",
-                Priority = model.Priority ?? 5,
-                IsCompleted = model.IsCompleted ?? false,
-                Color = model.Color ?? "#1A1A1A",
-                Status = model.Status.IsNull() ? Status.TODO : (Status)model?.Status,
-                LimitedAt = model.LimitedAt ?? DateTimeOffset.Now.AddDays(1),
-                SubItems = model.SubItems
-            };
-
             try
             {
-                _context.Item.Add(todoItem);
-                await _context.SaveChangesAsync();
+                if (string.IsNullOrEmpty(model.Title))
+                    return BadRequest(new Response { Success = false, Message = "Title is required" });
+                var todoItem = new Item
+                {
+                    UserId = User.GetLoggedInUserId(),
+                    Title = model.Title,
+                    Description = model.Description ?? "",
+                    Priority = model.Priority ?? 5,
+                    IsCompleted = model.IsCompleted ?? false,
+                    Color = model.Color ?? "#1A1A1A",
+                    Status = model.Status.IsNull() ? Status.TODO : (Status)model?.Status,
+                    LimitedAt = model.LimitedAt ?? DateTimeOffset.Now.AddDays(1),
+                    SubItems = model.SubItems
+                };
+                var result = await _taskService.InsertTask(todoItem);
+                if (!result)
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Success = false, Message = "Failed to insert task to the database" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Success = true, Message = "Successfully insert task to the database" });
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = ex.Message });
             }
-            return Ok(new Response { Success = true, Message = "Successfully create task", Object = todoItem });
         }
 
         [HttpGet]
@@ -61,8 +59,10 @@ namespace todoapp_api.Controllers
         {
             try
             {
-                var tasks = _context.Item.Include(i => i.SubItems).Take(amount);
-                return Ok(tasks);
+                var tasks = _taskService.GetTaskByAmount(amount);
+                if (tasks == null)
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Success = false, Message = "Failed to get task from the database" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Success = true, Message = "Successfully get task from the database" });
             }
             catch (Exception ex)
             {

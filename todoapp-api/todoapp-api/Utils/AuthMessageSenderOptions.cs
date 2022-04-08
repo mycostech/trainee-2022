@@ -1,4 +1,4 @@
-﻿namespace todoapp_api.Services
+﻿namespace todoapp_api.Utils
 {
     public class AuthMessageSenderOptions
     {

@@ -5,6 +5,8 @@ project.lock.json
 *.pyc
 nupkg/
 
+.env
+
 # User-specific files
 *.suo
 *.user

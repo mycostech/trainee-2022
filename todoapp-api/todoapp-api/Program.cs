@@ -8,12 +8,26 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using todoapp_api.Services;
 using todoapp_api.Models;
+using todoapp_api.Services.Interfaces;
+using todoapp_api.Options;
+using todoapp_api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigurationManager configuration = builder.Configuration;
+// Load .env file
+var dotenv = Path.Combine(Directory.GetCurrentDirectory(), ".env");
+DotEnv.Load(dotenv);
+
+Console.WriteLine(EnvironmentVariables.JWT_SECRET);
+Console.WriteLine(EnvironmentVariables.DB_CONNECTION_STRING);
+
+//// Bind configuration options
+builder.Services.Configure<JWTOptions>(builder.Configuration.GetSection(JWTOptions.JWT));
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 builder.Services.AddDbContext<todoapp_apiContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("todoapp_apiContext")));
+    options.UseSqlServer(EnvironmentVariables.DB_CONNECTION_STRING));
 
 builder.Services.AddIdentity<User, IdentityRole<int>>()
     .AddEntityFrameworkStores<todoapp_apiContext>()
@@ -36,10 +50,7 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidAudience = configuration["JWT:ValidAudience"],
-        ValidIssuer = configuration["JWT:ValidIssuer"],
         ValidateLifetime = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"])),
         ClockSkew = TimeSpan.FromMinutes(60)
     };
 });
@@ -68,6 +79,10 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.AllowedUserNameCharacters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
 });
+
+//// Bind services
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
