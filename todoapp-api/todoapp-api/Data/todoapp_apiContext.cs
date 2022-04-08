@@ -10,7 +10,7 @@ using todoapp_api.Models;
 
 namespace todoapp_api.Data
 {
-    public class todoapp_apiContext : IdentityDbContext<IdentityUser>
+    public class todoapp_apiContext : IdentityDbContext<User,IdentityRole<int>,int>
     {
         public todoapp_apiContext (DbContextOptions<todoapp_apiContext> options)
             : base(options)

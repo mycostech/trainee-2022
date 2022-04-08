@@ -16,9 +16,8 @@ namespace todoapp_api.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [ForeignKey("UserId")]
         [Required]
-        public User User { get; set; }
-        [ForeignKey("FK_User_Item")]
         public int UserId { get; set; }
         [StringLength(50)]
         public string? Title { get; set; }
@@ -31,7 +30,7 @@ namespace todoapp_api.Models
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
         public DateTimeOffset LimitedAt { get; set; }
-        [ForeignKey("FK_Item_SubItem")]
+        [ForeignKey("ItemId")]
         public List<SubItem> SubItems { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using todoapp_api.Models.Auth;
+using todoapp_api.Contract.Auth;
 using System.Text;
 using todoapp_api.Services;
 
@@ -22,10 +22,10 @@ namespace todoapp_api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
-        public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public AuthController(UserManager<User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -42,7 +42,7 @@ namespace todoapp_api.Controllers
 
                 var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
@@ -72,9 +72,9 @@ namespace todoapp_api.Controllers
         {
             var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = "User already exists!" });
+                return BadRequest(new Response { Success = false, Message = "User already exists!" });
 
-            IdentityUser user = new()
+            User user = new()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
@@ -82,7 +82,7 @@ namespace todoapp_api.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = "User creation failed! Please check user details and try again." });
+                return BadRequest(new Response { Success = false, Message = "User creation failed! Please check user details and try again.", Object = result.Errors });
 
             return Ok(new Response { Success = true, Message = "User created successfully!" });
         }
@@ -99,8 +99,6 @@ namespace todoapp_api.Controllers
             var passwordResetLink = Url.Action("ResetPassword", "Auth", new { email = model.Email, token = token }, Request.Scheme);
             
             // EmailSender.SendEmailAsync() // this should be implement to send email to user
-            //
-            //
 
             return Ok(new { Success = true, Message = "Successfully send the reset password link to " + model.Email , Link = passwordResetLink, Token = token});
         }

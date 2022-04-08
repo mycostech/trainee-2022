@@ -5,97 +5,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace todoapp_api.Migrations
 {
-    public partial class Identity : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Password",
-                table: "User",
-                newName: "UserName");
-
-            migrationBuilder.AddColumn<int>(
-                name: "AccessFailedCount",
-                table: "User",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddColumn<string>(
-                name: "ConcurrencyStamp",
-                table: "User",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<bool>(
-                name: "EmailConfirmed",
-                table: "User",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
-
-            migrationBuilder.AddColumn<bool>(
-                name: "LockoutEnabled",
-                table: "User",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
-
-            migrationBuilder.AddColumn<DateTimeOffset>(
-                name: "LockoutEnd",
-                table: "User",
-                type: "datetimeoffset",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "NormalizedEmail",
-                table: "User",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "NormalizedUserName",
-                table: "User",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "PasswordHash",
-                table: "User",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "PhoneNumber",
-                table: "User",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<bool>(
-                name: "PhoneNumberConfirmed",
-                table: "User",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
-
-            migrationBuilder.AddColumn<string>(
-                name: "SecurityStamp",
-                table: "User",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<bool>(
-                name: "TwoFactorEnabled",
-                table: "User",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -109,7 +28,8 @@ namespace todoapp_api.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -136,7 +56,7 @@ namespace todoapp_api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -157,7 +77,7 @@ namespace todoapp_api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -179,7 +99,7 @@ namespace todoapp_api.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -196,8 +116,8 @@ namespace todoapp_api.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -220,7 +140,7 @@ namespace todoapp_api.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -232,6 +152,56 @@ namespace todoapp_api.Migrations
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Item",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Priority = table.Column<int>(type: "int", nullable: true, defaultValue: 5),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
+                    Status = table.Column<int>(type: "int", nullable: true),
+                    Color = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true, defaultValue: "#1A1A1A"),
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    LimitedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Item", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Item_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubItem",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: true, defaultValue: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SubItem_Item_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Item",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -274,6 +244,16 @@ namespace todoapp_api.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Item_UserId",
+                table: "Item",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubItem_ItemId",
+                table: "SubItem",
+                column: "ItemId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -294,63 +274,16 @@ namespace todoapp_api.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "SubItem");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Item");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
-                name: "AccessFailedCount",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "ConcurrencyStamp",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "EmailConfirmed",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "LockoutEnabled",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "LockoutEnd",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "NormalizedEmail",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "NormalizedUserName",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "PasswordHash",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "PhoneNumber",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "PhoneNumberConfirmed",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "SecurityStamp",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "TwoFactorEnabled",
-                table: "User");
-
-            migrationBuilder.RenameColumn(
-                name: "UserName",
-                table: "User",
-                newName: "Password");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace todoapp_api.Utils
 {
-    public static class General
+    public static class GeneralExtension
     {
 
         public static bool IsNull(this int? number)

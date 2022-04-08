@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace todoapp_api.Models.Task
+using todoapp_api.Models;
+
+namespace todoapp_api.Contract.Task
 {
     public class ItemModel
     {
@@ -10,5 +12,6 @@ namespace todoapp_api.Models.Task
         public int? Status { get; set; }
         public string? Color { get; set; }
         public DateTimeOffset? LimitedAt { get; set; }
+        public List<SubItem>? SubItems { get; set; }
     }
 }

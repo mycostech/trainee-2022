@@ -8,9 +8,8 @@ namespace todoapp_api.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [ForeignKey("ItemId")]
         [Required]
-        public Item Item { get; set; }
-        [ForeignKey("FK_item_SubItem")]
         public int ItemId { get; set; }
         [StringLength(50)]
         public string? Title { get; set; }

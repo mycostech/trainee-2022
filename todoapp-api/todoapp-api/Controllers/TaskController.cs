@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using todoapp_api.Data;
 using todoapp_api.Models;
-using todoapp_api.Models.Task;
+using todoapp_api.Contract.Task;
 using todoapp_api.Utils;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace todoapp_api.Controllers
 {
@@ -37,7 +39,8 @@ namespace todoapp_api.Controllers
                 IsCompleted = model.IsCompleted ?? false,
                 Color = model.Color ?? "#1A1A1A",
                 Status = model.Status.IsNull() ? Status.TODO : (Status)model?.Status,
-                LimitedAt = model.LimitedAt ?? DateTimeOffset.Now.AddDays(1)
+                LimitedAt = model.LimitedAt ?? DateTimeOffset.Now.AddDays(1),
+                SubItems = model.SubItems
             };
 
             try
@@ -47,18 +50,24 @@ namespace todoapp_api.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new Response { Success = false, Message = ex.Message });
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = ex.Message });
             }
-            return Ok(new Response { Success = true, Message = "Successfully create task" });
+            return Ok(new Response { Success = true, Message = "Successfully create task", Object = todoItem });
         }
 
         [HttpGet]
         [Route("get/{amount}")]
         public async Task<IActionResult> GetByAmount(int amount)
         {
-            var tasks = _context.Item.Take(amount);
-            return Ok(tasks);
-
+            try
+            {
+                var tasks = _context.Item.Include(i => i.SubItems).Take(amount);
+                return Ok(tasks);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = ex.Message });
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace todoapp_api.Models.Auth
+namespace todoapp_api.Contract.Auth
 {
     public class ResetPasswordBody
     {

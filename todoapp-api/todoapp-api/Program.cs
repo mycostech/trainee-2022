@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using todoapp_api.Services;
+using todoapp_api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -14,7 +15,7 @@ ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddDbContext<todoapp_apiContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("todoapp_apiContext")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<User, IdentityRole<int>>()
     .AddEntityFrameworkStores<todoapp_apiContext>()
     .AddDefaultTokenProviders();
 

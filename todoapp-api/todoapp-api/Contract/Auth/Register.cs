@@ -1,8 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace todoapp_api.Models.Auth
+namespace todoapp_api.Contract.Auth
 {
-    public class Login
+    public class Register
     {
+        [Required(ErrorMessage = "User Name is required")]
+        public string? Name { get; set; }
+
+        [EmailAddress]
         [Required(ErrorMessage = "Email is required")]
         public string? Email { get; set; }
 
