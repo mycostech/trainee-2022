@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 *,
 ::before,
 ::after {
@@ -30,13 +31,143 @@ iframe,
 embed,
 object {
   display: block;
-  vertical-align: middle;
 }
 
 a {
   text-decoration: none;
-  color: black;
   cursor: pointer;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+html {
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #2e2d2d;
+  display: grid;
+  grid-template-columns: 50px 75px 1fr 65px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  width: 100%;
+  min-height: 5vh;
+}
+.header .sidebar-button {
+  display: flex;
+  justify-content: center;
+  max-width: 50px;
+  cursor: pointer;
+}
+.header .logo {
+  display: flex;
+  justify-content: center;
+  max-width: 75px;
+  cursor: pointer;
+}
+.header .space {
+  width: 200%;
+}
+.header .user-account-button {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.header .user-account-button .dropdown-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.sidebar {
+  background: #2e2d2d;
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  padding: 3rem 1.5rem;
+  width: 12%;
+  min-width: 200px;
+  min-height: 95vh;
+}
+.sidebar-body-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.sidebar-body-menu-list {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.15rem;
+}
+
+.landing {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.landing-image {
+  display: none;
+}
+@media all and (min-width: 769px) {
+  .landing-image {
+    display: flex;
+  }
+}
+.landing-form {
+  display: flex;
+  background: #fec805;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 7rem;
+}
+.landing-form-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.landing-form-header {
+  margin: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.landing-form-header h1 {
+  color: #000000;
+  font-size: 2rem;
+  font-weight: 800;
+}
+.landing-form-header h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.landing-form > button {
+  background: #000000;
+  border-radius: 0.35rem;
+  padding: 0.85rem 3rem;
+  font-size: 1.15rem;
 }
 
 /*# sourceMappingURL=style.css.map */

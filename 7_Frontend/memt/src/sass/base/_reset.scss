@@ -27,10 +27,22 @@ iframe,
 embed,
 object {
   display: block;
-  vertical-align: middle;
 }
 a {
   text-decoration: none;
-  color: black;
   cursor: pointer;
+}
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: $primary-text-color;
+}
+html {
+  color: $primary-text-color;
+  font-family: $font-primary;
+}
+body {
+  min-height: 100vh;
 }
