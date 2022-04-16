@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Landing() {
   return (
     <>
-      <div className="container-full landing">
+      <div className="landing">
         <div className="landing-image">
           <img src="/images/landing.png" alt="" />
         </div>
@@ -15,7 +16,9 @@ export default function Landing() {
             <h1>MEMT</h1>
             <h2>Mycos Employee Mood Tracker</h2>
           </div>
-          <button>Login</button>
+          <button>
+            <Link to="/member">Login</Link>
+          </button>
         </div>
       </div>
     </>

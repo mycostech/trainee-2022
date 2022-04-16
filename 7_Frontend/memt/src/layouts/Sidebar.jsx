@@ -10,7 +10,14 @@ export default function Sidebar() {
   if (!sidebarToggle) return <></>;
   return (
     <div className="sidebar">
-      <div className="sidebar-header"></div>
+      <div
+        className="sidebar-header"
+        onClick={() => {
+          setSidebarToggle(false);
+        }}
+      >
+        &#10006;
+      </div>
       <div className="sidebar-body">
         <ul className="sidebar-body-menu">
           <li className="sidebar-body-menu-list">
