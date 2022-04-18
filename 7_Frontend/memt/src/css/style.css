@@ -84,7 +84,7 @@ body {
   }
   .profile-header-image img {
     border-radius: 50%;
-    width: 100%;
+    width: 95%;
     object-fit: cover;
   }
   .profile-header-bio {
@@ -170,6 +170,17 @@ body {
   display: flex;
   gap: 1rem;
   font-size: 1.15rem;
+  align-items: center;
+  cursor: pointer;
+}
+.sidebar-active {
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+.sidebar-inactive {
+  opacity: 0;
+  transform: translate(-100%, 0);
+  transition: all 0.5s ease;
 }
 
 .landing {

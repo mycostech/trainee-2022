@@ -22,7 +22,18 @@
         display: flex;
         gap: 1rem;
         font-size: 1.15rem;
+        align-items: center;
+        cursor: pointer;
       }
     }
+  }
+  &-active {
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+  &-inactive {
+    opacity: 0;
+    transform: translate(-100%, 0);
+    transition: all 0.5s ease;
   }
 }
