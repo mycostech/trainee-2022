@@ -16,9 +16,9 @@ export default function Landing() {
             <h1>MEMT</h1>
             <h2>Mycos Employee Mood Tracker</h2>
           </div>
-          <button>
-            <Link to="/member">Login</Link>
-          </button>
+          <Link to="/member">
+            <button>Login</button>
+          </Link>
         </div>
       </div>
     </>

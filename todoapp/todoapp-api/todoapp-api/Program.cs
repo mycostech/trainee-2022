@@ -17,9 +17,6 @@ var builder = WebApplication.CreateBuilder(args);
 var dotenv = Path.Combine(Directory.GetCurrentDirectory(), ".env");
 DotEnv.Load(dotenv);
 
-Console.WriteLine(EnvironmentVariables.JWT_SECRET);
-Console.WriteLine(EnvironmentVariables.DB_CONNECTION_STRING);
-
 //// Bind configuration options
 builder.Services.Configure<JWTOptions>(builder.Configuration.GetSection(JWTOptions.JWT));
 

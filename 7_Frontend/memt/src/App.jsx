@@ -1,4 +1,4 @@
-import { useState, useContext, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import { SidebarToggle } from "./contexts/SidebarContext";

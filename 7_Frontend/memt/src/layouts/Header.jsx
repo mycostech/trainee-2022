@@ -3,6 +3,7 @@ import { FaBars } from "react-icons/fa";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { BsChevronDown } from "react-icons/bs";
 import { SidebarToggle } from "../contexts/SidebarContext";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { sidebarToggle, setSidebarToggle } = useContext(SidebarToggle);
@@ -16,7 +17,9 @@ export default function Header() {
       >
         <FaBars />
       </div>
-      <div className="logo">MEMT</div>
+      <div className="logo">
+        <Link to="/">MEMT</Link>
+      </div>
       <div className="space"></div>
       <div className="user-account-button">
         <IoPersonCircleOutline />
