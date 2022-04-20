@@ -18,7 +18,7 @@ export default function Header() {
         <FaBars />
       </div>
       <div className="logo">
-        <Link to="/">TODO</Link>
+        <Link to="/member">TODO</Link>
       </div>
       <div className="space"></div>
       <div className="user-account-button">

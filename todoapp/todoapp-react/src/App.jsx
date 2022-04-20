@@ -1,22 +1,24 @@
-import { useState, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainPageLayout from "./layouts/MainPageLayout";
 import Dashboard from "./pages/Dashboard";
-import { SidebarToggle } from "./contexts/SidebarContext";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import PageNotFound404 from "./pages/PageNotFound404";
+import Register from "./pages/Register";
 
 function App() {
-  const [sidebarToggle, setSidebarToggle] = useState(false);
-  const sidebarToggleValue = useMemo(() => ({ sidebarToggle, setSidebarToggle }), [sidebarToggle, setSidebarToggle]);
-
   return (
-    <SidebarToggle.Provider value={sidebarToggleValue}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route exact path="/member" element={<Dashboard />} />
-        </Routes>
-      </Router>
-    </SidebarToggle.Provider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route exact path="/member" element={<MainPageLayout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
+        <Route path="*" element={<PageNotFound404 />} />
+      </Routes>
+    </Router>
   );
 }
 

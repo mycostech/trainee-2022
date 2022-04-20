@@ -3,10 +3,16 @@ import ReactDOM from "react-dom";
 import "./css/style.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "./contexts/AuthContext";
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+    <Toaster />
+  </>,
   document.getElementById("root")
 );
 
