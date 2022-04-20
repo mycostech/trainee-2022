@@ -20,6 +20,10 @@
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 0 20px rgba(233, 198, 198, 0.2);
+  animation-name: fade-in, slide-in-top;
+  animation-duration: 1s, 1s;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-fill-mode: both, both;
 }
 .login-form {
   display: flex;

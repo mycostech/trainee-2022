@@ -71,6 +71,12 @@
           color: rgb(24, 48, 128);
         }
       }
+      animation-name: fade-in, slide-in-top;
+      animation-duration: 0.5s, 0.5s;
+      animation-timing-function: ease-in-out, ease-in-out;
     }
   }
+  animation-name: fade-in, slide-in-top;
+  animation-duration: 1s, 1s;
+  animation-timing-function: ease-in-out, ease-in-out;
 }

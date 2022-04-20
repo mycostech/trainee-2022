@@ -24,6 +24,14 @@
     transform: translateX(0);
   }
 }
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 *,
 ::before,
 ::after {
@@ -129,6 +137,124 @@ body {
   }
 }
 
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 22%;
+  background: #fff;
+  height: 80%;
+  margin-top: 8vh;
+}
+.todo-container .todo-info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: url("./assets/todoinfo-bg.png");
+  background-size: cover;
+}
+.todo-container .todo-info-left {
+  display: flex;
+  flex-direction: column;
+}
+.todo-container .todo-info-left h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: white;
+  padding: 2rem 2.5rem;
+}
+.todo-container .todo-info-left span {
+  font-size: 1rem;
+  padding-bottom: 1.5rem;
+  padding-inline: 2rem;
+}
+.todo-container .todo-info-right {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo-container .todo-list {
+  color: black;
+  max-height: 320px;
+}
+.todo-container .todo-list-wrapper {
+  overflow-y: hidden;
+}
+.todo-container .todo-list > h1 {
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 1rem 1.5rem;
+  width: 100%;
+}
+.todo-container .todo-list-item {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+}
+.todo-container .todo-list-item:hover {
+  background: #f5f5f5;
+}
+.todo-container .todo-list-item .content {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding: 0.5rem 2rem;
+}
+.todo-container .todo-list-item .content .title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.todo-container .todo-list-item .content .description {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.todo-container .todo-list-item .date-time {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+.todo-container .todo-list-item .date-time div {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.todo-container .todo-list-item::after {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  bottom: -3px;
+  left: 5%;
+}
+.todo-container .todo-list .footer {
+  display: flex;
+  position: relative;
+}
+.todo-container .todo-list .footer .complete {
+  padding: 1rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.todo-container .todo-list .footer .complete span {
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50%;
+  background: rgb(145, 145, 145);
+}
+.todo-container .todo-list .footer .add-todo-button {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 20%;
+  font-size: 4rem;
+  color: #2267d6;
+  z-index: 99;
+  cursor: pointer;
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -141,6 +267,9 @@ body {
   font-size: 1.25rem;
   width: 100%;
   min-height: 5vh;
+  animation-name: fade-in, slide-in-top;
+  animation-duration: 1s, 1s;
+  animation-timing-function: ease-in-out, ease-in-out;
 }
 .header .sidebar-button {
   display: flex;
@@ -194,6 +323,9 @@ body {
   font-size: 1rem;
   min-width: 120px;
   min-height: 45px;
+  animation-name: fade-in, slide-in-top;
+  animation-duration: 0.5s, 0.5s;
+  animation-timing-function: ease-in-out, ease-in-out;
 }
 .header .user-account-button .user-account-dropdown a:nth-of-type(1) {
   margin-top: 0.6rem;
@@ -241,6 +373,14 @@ body {
   opacity: 0;
   transform: translate(-100%, 0);
   transition: all 0.5s ease;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(162, 210, 255, 0.5);
+  height: 95vh;
+  width: 100vw;
 }
 
 .landing {
@@ -657,6 +797,10 @@ body {
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 0 20px rgba(233, 198, 198, 0.2);
+  animation-name: fade-in, slide-in-top;
+  animation-duration: 1s, 1s;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-fill-mode: both, both;
 }
 
 .login-form {
