@@ -16,6 +16,8 @@ using todoapp_api.Contract.Auth;
 using System.Text;
 using todoapp_api.Services;
 using todoapp_api.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using todoapp_api.Utils;
 
 namespace todoapp_api.Controllers
 {
@@ -43,11 +45,26 @@ namespace todoapp_api.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, new Response { Success = true, Message = "Credentials do not match" });
 
                 var token = _userService.GenerateJWTToken(user);
-                return Ok(new { Success = true, Message = "Successfully login", token = token });
+                return Ok(new { Success = true, Message = "Successfully login", token = token, user = new {id = user.Id, email = user.Email} });
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = ex.Message});
+            }
+        }
+
+        [HttpGet]
+        [Route("getuser")]
+        public async Task<IActionResult> GetUser()
+        {
+            try
+            {
+                var user = await _userService.GetUserByEmailAsync(User.GetLoggedInUserEmail());
+                return Ok(new { Success = true, Message = "Successfully get user", user = new { id = user.Id, email = user.Email } });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = ex.Message });
             }
         }
 
@@ -61,7 +78,7 @@ namespace todoapp_api.Controllers
                 if (user != null)
                     return BadRequest(new Response { Success = false, Message = "User already exists!" });
 
-                var result = await _userService.CreateNewUserAsync(model.Email, model.Name, model.Password);
+                var result = await _userService.CreateNewUserAsync(model.Email, model.Email, model.Password);
                 if (!result.Succeeded)
                     return BadRequest(new Response { Success = false, Message = "User creation failed! Please check user details and try again.", Object = result.Errors });
 

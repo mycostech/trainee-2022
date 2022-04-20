@@ -11,6 +11,7 @@ using todoapp_api.Models;
 using todoapp_api.Services.Interfaces;
 using todoapp_api.Options;
 using todoapp_api.Utils;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 // Load .env file
@@ -30,6 +31,13 @@ builder.Services.AddIdentity<User, IdentityRole<int>>()
     .AddEntityFrameworkStores<todoapp_apiContext>()
     .AddDefaultTokenProviders();
 
+// builder.Services.AddAuthorization(auth => {
+//     auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+//         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+//         .RequireAuthenticatedUser()
+//         .Build());
+// });
+
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
 {
@@ -45,10 +53,10 @@ builder.Services.AddAuthentication(options =>
     options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters()
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
         ValidateLifetime = true,
-        ClockSkew = TimeSpan.FromMinutes(60)
+        ClockSkew = TimeSpan.FromMinutes(60),
     };
 });
 
@@ -120,6 +128,16 @@ builder.Services.AddSwaggerGen(option =>
                 });
 });
 
+/// Add Cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowOrigins",
+                      policy =>
+                      {
+                          policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                      });
+});
+
 var app = builder.Build();
 
 
@@ -128,6 +146,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowOrigins");
 
 app.UseAuthentication();
 app.UseAuthorization();

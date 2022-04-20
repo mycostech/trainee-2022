@@ -81,6 +81,7 @@ namespace todoapp_api.Services
             try
             {
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(EnvironmentVariables.JWT_SECRET));
+                // var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("tesakdsaksadkqewqoqo12321321o0sa"));
 
                 var token = new JwtSecurityToken(
                     issuer: _options.ValidIssuer,

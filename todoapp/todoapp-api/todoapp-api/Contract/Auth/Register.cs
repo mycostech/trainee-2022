@@ -3,8 +3,6 @@ namespace todoapp_api.Contract.Auth
 {
     public class Register
     {
-        [Required(ErrorMessage = "User Name is required")]
-        public string? Name { get; set; }
 
         [EmailAddress]
         [Required(ErrorMessage = "Email is required")]
@@ -12,5 +10,9 @@ namespace todoapp_api.Contract.Auth
 
         [Required(ErrorMessage = "Password is required")]
         public string? Password { get; set; }
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [Compare("Password", ErrorMessage = "Password and Confirm Password must match")]
+        public string? ConfirmPassword { get; set; }
     }
 }
