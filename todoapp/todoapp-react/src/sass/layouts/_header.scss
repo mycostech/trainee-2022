@@ -15,20 +15,35 @@
     justify-content: center;
     max-width: 50px;
     cursor: pointer;
+    &:hover {
+      color: $tertiary-color;
+    }
   }
   .logo {
     display: flex;
     justify-content: center;
     max-width: 75px;
     cursor: pointer;
+    a {
+      &:hover {
+        color: $tertiary-color;
+      }
+    }
   }
   .space {
     width: 200%;
   }
   .user-account-button {
+    position: relative;
     font-size: 1.5rem;
     display: flex;
     justify-content: center;
+    &:hover {
+      color: $tertiary-color;
+      .dropdown-arrow {
+        color: $tertiary-color;
+      }
+    }
     .dropdown-arrow {
       display: flex;
       align-items: center;
@@ -36,5 +51,26 @@
       font-size: 0.8rem;
     }
     cursor: pointer;
+    .user-account-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 1%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba($primary-color, 0.5);
+      font-size: 1rem;
+      min-width: 120px;
+      min-height: 45px;
+      a:nth-of-type(1) {
+        margin-top: 0.6rem;
+      }
+      a {
+        &:hover {
+          color: rgb(24, 48, 128);
+        }
+      }
+    }
   }
 }

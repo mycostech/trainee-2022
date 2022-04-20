@@ -55,10 +55,17 @@ export function AuthProvider({ children }) {
     toast.success("Register Successful");
     return true;
   }
+
+  async function logout() {
+    setCurrentUser(null);
+    localStorage.removeItem("token");
+    toast.success("Logout Successful");
+  }
   const value = {
     currentUser,
     login,
     register,
+    logout,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

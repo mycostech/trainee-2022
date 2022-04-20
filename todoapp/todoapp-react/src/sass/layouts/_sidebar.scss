@@ -24,6 +24,9 @@
         font-size: 1.15rem;
         align-items: center;
         cursor: pointer;
+        &:hover {
+          color: $tertiary-color;
+        }
       }
     }
   }

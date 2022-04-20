@@ -148,26 +148,58 @@ body {
   max-width: 50px;
   cursor: pointer;
 }
+.header .sidebar-button:hover {
+  color: #a2d2ff;
+}
 .header .logo {
   display: flex;
   justify-content: center;
   max-width: 75px;
   cursor: pointer;
 }
+.header .logo a:hover {
+  color: #a2d2ff;
+}
 .header .space {
   width: 200%;
 }
 .header .user-account-button {
+  position: relative;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
   cursor: pointer;
+}
+.header .user-account-button:hover {
+  color: #a2d2ff;
+}
+.header .user-account-button:hover .dropdown-arrow {
+  color: #a2d2ff;
 }
 .header .user-account-button .dropdown-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.8rem;
+}
+.header .user-account-button .user-account-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 133, 161, 0.5);
+  font-size: 1rem;
+  min-width: 120px;
+  min-height: 45px;
+}
+.header .user-account-button .user-account-dropdown a:nth-of-type(1) {
+  margin-top: 0.6rem;
+}
+.header .user-account-button .user-account-dropdown a:hover {
+  color: rgb(24, 48, 128);
 }
 
 .sidebar {
@@ -197,6 +229,9 @@ body {
   font-size: 1.15rem;
   align-items: center;
   cursor: pointer;
+}
+.sidebar-body-menu-list:hover {
+  color: #a2d2ff;
 }
 .sidebar-active {
   opacity: 1;
