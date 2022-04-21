@@ -1,0 +1,143 @@
+[
+  {
+    "index": 0,
+    "event": "created",
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      34,
+      3,
+      510307
+    ]
+  },
+  {
+    "duration": 0.880305,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 1,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      53,
+      56,
+      71553
+    ]
+  },
+  {
+    "duration": 2.708245,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 2,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      54,
+      17,
+      104332
+    ]
+  },
+  {
+    "duration": 3.492462,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 3,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      56,
+      37,
+      404970
+    ]
+  },
+  {
+    "duration": 2.870398,
+    "colour": "red",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 4,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      57,
+      2,
+      681690
+    ]
+  },
+  {
+    "duration": 1.49168,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 5,
+    "time": [
+      2022,
+      4,
+      21,
+      5,
+      3,
+      9,
+      454330
+    ]
+  },
+  {
+    "duration": 2.693491,
+    "colour": "red",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 6,
+    "time": [
+      2022,
+      4,
+      21,
+      5,
+      3,
+      48,
+      703524
+    ]
+  },
+  {
+    "duration": 2.970274,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 7,
+    "time": [
+      2022,
+      4,
+      21,
+      5,
+      6,
+      9,
+      59377
+    ]
+  },
+  {
+    "duration": 2.725691,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 8,
+    "time": [
+      2022,
+      4,
+      21,
+      5,
+      6,
+      44,
+      884287
+    ]
+  }
+]
