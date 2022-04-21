@@ -1,0 +1,8 @@
+{
+  "theme": "light",
+  "colour": "on",
+  "predict": "off",
+  "revert_red": "off",
+  "revert_amber": "off",
+  "revert_green": "off"
+}

@@ -1,0 +1,239 @@
+[
+  {
+    "index": 0,
+    "event": "created",
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      37,
+      47,
+      525265
+    ]
+  },
+  {
+    "duration": 2.654221,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 1,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      38,
+      13,
+      296815
+    ]
+  },
+  {
+    "duration": 2.770321,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 2,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      38,
+      39,
+      273426
+    ]
+  },
+  {
+    "duration": 0.860686,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 3,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      43,
+      25,
+      341428
+    ]
+  },
+  {
+    "duration": 0.890688,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 4,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      44,
+      44,
+      170398
+    ]
+  },
+  {
+    "duration": 0.876811,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 5,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      45,
+      36,
+      575285
+    ]
+  },
+  {
+    "duration": 0.880941,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 6,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      45,
+      56,
+      364567
+    ]
+  },
+  {
+    "duration": 1.233213,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 7,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      46,
+      43,
+      105862
+    ]
+  },
+  {
+    "duration": 1.229902,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 8,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      47,
+      23,
+      697719
+    ]
+  },
+  {
+    "duration": 1.32639,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 9,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      47,
+      44,
+      415924
+    ]
+  },
+  {
+    "duration": 2.777476,
+    "colour": "red",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 10,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      48,
+      28,
+      612560
+    ]
+  },
+  {
+    "duration": 2.854493,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 11,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      48,
+      58,
+      591585
+    ]
+  },
+  {
+    "duration": 2.858332,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 12,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      51,
+      24,
+      810027
+    ]
+  },
+  {
+    "duration": 1.254923,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 13,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      54,
+      48,
+      884503
+    ]
+  },
+  {
+    "duration": 2.804414,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 14,
+    "time": [
+      2022,
+      4,
+      21,
+      4,
+      55,
+      0,
+      272510
+    ]
+  }
+]
