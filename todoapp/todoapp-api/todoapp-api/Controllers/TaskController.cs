@@ -35,7 +35,7 @@ namespace todoapp_api.Controllers
                     UserId = User.GetLoggedInUserId(),
                     Title = model.Title,
                     Description = model.Description ?? "",
-                    Priority = model.Priority ?? 5,
+                    Priority = model.Priority ?? "LOW",
                     IsCompleted = model.IsCompleted ?? false,
                     Color = model.Color ?? "#1A1A1A",
                     Status = model.Status.IsNull() ? Status.TODO : (Status)model?.Status,

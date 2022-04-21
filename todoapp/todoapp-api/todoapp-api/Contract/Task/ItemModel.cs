@@ -7,7 +7,7 @@ namespace todoapp_api.Contract.Task
     {
         public string? Title { get; set; }
         public string? Description { get; set; }
-        public int? Priority { get; set; }
+        public string? Priority { get; set; }
         public bool? IsCompleted { get; set; }
         public int? Status { get; set; }
         public string? Color { get; set; }

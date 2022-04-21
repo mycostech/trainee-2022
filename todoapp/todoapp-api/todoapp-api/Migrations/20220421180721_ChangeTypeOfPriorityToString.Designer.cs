@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using todoapp_api.Data;
 
@@ -11,9 +12,10 @@ using todoapp_api.Data;
 namespace todoapp_api.Migrations
 {
     [DbContext(typeof(todoapp_apiContext))]
-    partial class todoapp_apiContextModelSnapshot : ModelSnapshot
+    [Migration("20220421180721_ChangeTypeOfPriorityToString")]
+    partial class ChangeTypeOfPriorityToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

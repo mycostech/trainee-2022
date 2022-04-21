@@ -143,7 +143,7 @@ body {
   align-items: center;
   max-width: 22%;
   background: #fff;
-  height: 80%;
+  max-height: 80%;
   margin-top: 8vh;
   animation-name: fade-in, slide-in-left;
   animation-duration: 1s, 1s;
@@ -266,6 +266,83 @@ body {
 }
 .todo-container .todo-list .footer .add-todo-button:hover {
   color: #7aacfc;
+}
+
+.todo-add-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 22%;
+  background: rgba(70, 82, 157, 0.85);
+  max-height: 80%;
+  margin-top: 8vh;
+  animation-name: fade-in, slide-in-right;
+  animation-duration: 1s, 1s;
+  animation-fill-mode: forwards;
+}
+@media screen and (max-width: 768px) {
+  .todo-add-item {
+    max-width: 100%;
+  }
+}
+.todo-add-item__header {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.todo-add-item__header h1 {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.todo-add-item__header div {
+  font-size: 3rem;
+  color: #2bbcec;
+}
+.todo-add-item__header div svg {
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid #2bbcec;
+}
+.todo-add-item .todo-form {
+  min-width: 400px;
+  min-height: 320px;
+}
+.todo-add-item .todo-form form {
+  display: flex;
+  flex-direction: column;
+  margin-inline: 1.5rem;
+  gap: 1rem;
+}
+.todo-add-item .todo-form form input {
+  font-size: 0.9rem;
+  background: transparent;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.todo-add-item .todo-form form input::placeholder, .todo-add-item .todo-form form input::-webkit-datetime-edit-text, .todo-add-item .todo-form form input::-webkit-datetime-edit-month-field, .todo-add-item .todo-form form input::-webkit-datetime-edit-day-field, .todo-add-item .todo-form form input::-webkit-datetime-edit-year-field, .todo-add-item .todo-form form input::-webkit-datetime-edit-text, .todo-add-item .todo-form form input::-webkit-datetime-edit-hour-field, .todo-add-item .todo-form form input::-webkit-datetime-edit-minute-field, .todo-add-item .todo-form form input::-webkit-datetime-edit-ampm-field {
+  color: rgba(255, 255, 255, 0.4);
+}
+.todo-add-item .todo-form form > div {
+  font-size: 0.9rem;
+}
+.todo-add-item .todo-form form > div > div {
+  margin-bottom: 0.5rem;
+}
+.todo-add-item .todo-form form > div > div div {
+  font-size: 0.8rem;
+}
+.todo-add-item .todo-form form button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #2ebaee;
 }
 
 .pagination {
@@ -410,7 +487,7 @@ body {
 
 .dashboard {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background: rgba(162, 210, 255, 0.5);
   height: 95vh;
   width: 100vw;
