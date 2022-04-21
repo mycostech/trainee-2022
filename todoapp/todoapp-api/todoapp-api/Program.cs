@@ -49,16 +49,18 @@ builder.Services.AddAuthentication(options =>
 // Adding Jwt Bearer
 .AddJwtBearer(options =>
 {
-    // options.Audience = "http://localhost:3000/";
-    // options.Authority = "http://localhost:5254/";
+    // options.Audience = "http://localhost:3000";
+    // options.Authority = "http://localhost:5254";
     options.SaveToken = true;
     options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters()
     {
-        ValidateIssuer = false,
-        ValidateAudience = false,
+        ValidateIssuer = false, // just for development
+        ValidateAudience = false, // just for development
         ValidateLifetime = true,
+        ValidateIssuerSigningKey = false, // just for development
         ClockSkew = TimeSpan.FromMinutes(60),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(EnvironmentVariables.JWT_SECRET))
     };
 });
 

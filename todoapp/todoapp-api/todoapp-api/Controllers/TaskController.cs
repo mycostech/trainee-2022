@@ -54,7 +54,39 @@ namespace todoapp_api.Controllers
         }
 
         [HttpGet]
-        [Route("get/{from}/{to}")]
+        [Route("getTaskCount")]
+        public IActionResult GetTaskCount()
+        {
+            try
+            {
+                var userId = User.GetLoggedInUserId();
+                var count = _taskService.GetTaskCount(userId);
+                return StatusCode(StatusCodes.Status200OK, new Response { Success = true, Message = "Success", Object = count });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        [Route("getCompletedTaskCount")]
+        public IActionResult GetCompletedTaskCount()
+        {
+            try
+            {
+                var userId = User.GetLoggedInUserId();
+                var count = _taskService.GetCompletedTaskCount(userId);
+                return StatusCode(StatusCodes.Status200OK, new Response { Success = true, Message = "Success", Object = count });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Success = false, Message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        [Route("getTaskFromTo/{from}/{to}")]
         public async Task<IActionResult> GetTaskFromTo(int from, int to)
         {
             try

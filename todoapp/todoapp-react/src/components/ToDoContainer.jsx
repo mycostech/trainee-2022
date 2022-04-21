@@ -9,16 +9,26 @@ export default function ToDoContainer() {
   const amountPerPage = 4;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [todos, setTodos] = useState([]);
+  const [totalTodos, setTotalTodos] = useState(0);
+  const [totalCompletedTodos, setTotalCompletedTodos] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axiosHelper.get(
-        `/api/task/get/${(currentPage - 1) * amountPerPage + 1}/${(currentPage - 1) * amountPerPage + amountPerPage}`
+      let response = await axiosHelper.get("/api/task/getTaskCount");
+      if (response.status === 200) setTotalTodos(response.data.object);
+      else console.log(response.data.message);
+      response = await axiosHelper.get(
+        `/api/task/getTaskFromTo/${(currentPage - 1) * amountPerPage + 1}/${(currentPage - 1) * amountPerPage + amountPerPage}`
       );
-      console.log(response.data);
+      if (response.status === 200) setTodos(response.data.object);
+      else console.log(response.data.message);
+      response = await axiosHelper.get("/api/task/getCompletedTaskCount");
+      if (response.status === 200) setTotalCompletedTodos(response.data.object);
+      else console.log(response.data.message);
     }
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, totalTodos, totalCompletedTodos]);
 
   return (
     <>
@@ -26,16 +36,16 @@ export default function ToDoContainer() {
         <ToDoInfo />
         <div className="todo-list">
           <h1>TODO LIST</h1>
-          <ToDoList />
+          {todos && <ToDoList todos={todos} />}
           <div className="footer">
             <div className="complete">
-              COMPLETED <span className="circle-text">2</span>
+              COMPLETED <span className="circle-text">{totalCompletedTodos}</span>
             </div>
             <div className="add-todo-button">
               <AiOutlinePlusCircle />
             </div>
           </div>
-          <Pagination numberOfPages={5} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <Pagination numberOfPages={Math.ceil(totalTodos / amountPerPage)} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
       </div>
     </>

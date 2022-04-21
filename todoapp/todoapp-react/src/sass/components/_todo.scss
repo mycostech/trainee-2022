@@ -9,6 +9,9 @@
   background: #fff;
   height: 80%;
   margin-top: 8vh;
+  animation-name: fade-in, slide-in-left;
+  animation-duration: 1s, 1s;
+  animation-fill-mode: forwards;
   .todo-info {
     display: flex;
     flex-direction: row;
@@ -39,8 +42,9 @@
   }
   .todo-list {
     color: black;
-    max-height: 320px;
     &-wrapper {
+      min-width: 400px;
+      min-height: 320px;
       overflow-y: hidden;
     }
     & > h1 {
@@ -96,11 +100,12 @@
       display: flex;
       position: relative;
       .complete {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 1.5rem;
         font-size: 0.8rem;
         font-weight: 600;
         span {
           color: white;
+          margin-left: 3px;
           padding: 0.3rem 0.6rem;
           border-radius: 50%;
           background: rgb(69, 173, 69);
@@ -109,7 +114,7 @@
       .add-todo-button {
         position: absolute;
         right: 1.5rem;
-        bottom: 30%;
+        bottom: 25%;
         font-size: 4rem;
         color: #2267d6;
         z-index: 99;

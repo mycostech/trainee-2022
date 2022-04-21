@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useMemo } from "react";
 import { axiosHelper } from "../helpers/axiosHelper";
 import toast from "react-hot-toast";
 import { toastHelper } from "../helpers/toastHelper";
@@ -20,6 +20,8 @@ export function AuthProvider({ children }) {
           if (response.data.success) {
             setCurrentUser(response.data.user);
           }
+        } else {
+          setCurrentUser(null);
         }
       }
     }
@@ -67,5 +69,8 @@ export function AuthProvider({ children }) {
     register,
     logout,
   };
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+
+  const contextValue = useMemo(() => value, [value]);
+
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }

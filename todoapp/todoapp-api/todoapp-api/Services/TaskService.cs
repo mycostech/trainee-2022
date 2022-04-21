@@ -34,6 +34,36 @@ namespace todoapp_api.Services
             
         }
 
+        public int GetTaskCount(int userId)
+        {
+            try
+            {
+                // get tasks count
+                var tasks = _context.Item.Where(x => x.UserId == userId && x.Status == Status.TODO).Count();
+                return tasks;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
+        public int GetCompletedTaskCount(int userId)
+        {
+            try
+            {
+                // get completed tasks count
+                var tasks = _context.Item.Where(x => x.UserId == userId && x.Status == Status.DONE).Count();
+                return tasks;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
         public async Task<bool> InsertTask(Item item)
         {
             try

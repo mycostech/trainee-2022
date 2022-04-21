@@ -1,29 +1,29 @@
 import React from "react";
+import { dateToString } from "../../helpers/dateFormat";
 
-export default function ToDoList() {
+export default function ToDoList({ todos }) {
   return (
     <>
       <div className="todo-list-wrapper">
-        <ToDoItem />
-        <ToDoItem />
-        <ToDoItem />
-        <ToDoItem />
+        {todos.map((todo) => (
+          <ToDoItem key={todo.id} todo={todo} />
+        ))}
       </div>
     </>
   );
 }
 
-function ToDoItem() {
+function ToDoItem({ todo }) {
   return (
     <>
       <div className="todo-list-item">
         <div className="content">
-          <div className="title">Example</div>
-          <div className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis provident ratione dolorum </div>
+          <div className="title">{todo.title || ""}</div>
+          <div className="description">{todo.description || ""}</div>
         </div>
         <div className="date-time">
-          <div>19 Mar 2022</div>
-          <div>12:00 PM</div>
+          <div>{dateToString(new Date(todo.limitedAt))}</div>
+          <div>{new Date(todo.limitedAt).toLocaleTimeString()}</div>
         </div>
       </div>
     </>
