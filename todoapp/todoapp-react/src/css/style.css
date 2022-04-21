@@ -146,6 +146,11 @@ body {
   height: 80%;
   margin-top: 8vh;
 }
+@media screen and (max-width: 768px) {
+  .todo-container {
+    max-width: 100%;
+  }
+}
 .todo-container .todo-info {
   display: flex;
   flex-direction: row;
@@ -235,7 +240,7 @@ body {
   position: relative;
 }
 .todo-container .todo-list .footer .complete {
-  padding: 1rem 1rem;
+  padding: 1.5rem 1rem;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -243,16 +248,39 @@ body {
   color: white;
   padding: 0.3rem 0.6rem;
   border-radius: 50%;
-  background: rgb(145, 145, 145);
+  background: rgb(69, 173, 69);
 }
 .todo-container .todo-list .footer .add-todo-button {
   position: absolute;
   right: 1.5rem;
-  bottom: 20%;
+  bottom: 30%;
   font-size: 4rem;
   color: #2267d6;
   z-index: 99;
   cursor: pointer;
+}
+.todo-container .todo-list .footer .add-todo-button:hover {
+  color: #7aacfc;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+.pagination-item__button {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: black;
+  text-align: center;
+}
+.pagination-item__button:hover {
+  color: rgb(24, 80, 199);
+}
+.pagination-item__button--active {
+  color: rgb(24, 80, 199);
+  text-decoration: underline;
 }
 
 .header {

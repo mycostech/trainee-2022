@@ -1,0 +1,21 @@
+.pagination {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  &-item {
+    &__button {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: black;
+      text-align: center;
+      &:hover {
+        color: rgb(24, 80, 199);
+      }
+      &--active {
+        color: rgb(24, 80, 199);
+        text-decoration: underline;
+      }
+    }
+  }
+}
