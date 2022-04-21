@@ -49,6 +49,8 @@ builder.Services.AddAuthentication(options =>
 // Adding Jwt Bearer
 .AddJwtBearer(options =>
 {
+    // options.Audience = "http://localhost:3000/";
+    // options.Authority = "http://localhost:5254/";
     options.SaveToken = true;
     options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters()

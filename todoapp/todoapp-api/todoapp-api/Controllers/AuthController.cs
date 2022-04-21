@@ -53,6 +53,7 @@ namespace todoapp_api.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet]
         [Route("getuser")]
         public async Task<IActionResult> GetUser()
@@ -60,6 +61,8 @@ namespace todoapp_api.Controllers
             try
             {
                 var user = await _userService.GetUserByEmailAsync(User.GetLoggedInUserEmail());
+                if(user == null)
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Success = false, Message = "Token is expired" });
                 return Ok(new { Success = true, Message = "Successfully get user", user = new { id = user.Id, email = user.Email } });
             }
             catch (Exception ex)

@@ -3,6 +3,7 @@ using todoapp_api.Models;
 using todoapp_api.Services.Interfaces;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using todoapp_api.Utils;
 
 namespace todoapp_api.Services
 {
@@ -17,11 +18,12 @@ namespace todoapp_api.Services
             _logger = logger;
         }
 
-        public List<Item> GetTaskByAmount(int amount)
+        public List<Item> GetTaskFromTo(int userId, int from, int to)
         {
             try
             {
-                var tasks = _context.Item.Include(i => i.SubItems).Take(amount).ToList();
+                // get tasks from ... to ...
+                var tasks = _context.Item.Where(x => x.UserId == userId && x.Status == Status.TODO).OrderBy(x => x.Priority).Skip(from).Take(to).ToList();
                 return tasks;
             }
             catch (Exception ex)

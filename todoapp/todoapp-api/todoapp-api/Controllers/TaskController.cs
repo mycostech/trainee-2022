@@ -54,15 +54,15 @@ namespace todoapp_api.Controllers
         }
 
         [HttpGet]
-        [Route("get/{amount}")]
-        public async Task<IActionResult> GetByAmount(int amount)
+        [Route("get/{from}/{to}")]
+        public async Task<IActionResult> GetTaskFromTo(int from, int to)
         {
             try
             {
-                var tasks = _taskService.GetTaskByAmount(amount);
+                var tasks = _taskService.GetTaskFromTo(User.GetLoggedInUserId(), from, to);
                 if (tasks == null)
                     return StatusCode(StatusCodes.Status400BadRequest, new Response { Success = false, Message = "Failed to get task from the database" });
-                return StatusCode(StatusCodes.Status200OK, new Response { Success = true, Message = "Successfully get task from the database" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Success = true, Message = "Successfully get task from the database", Object = tasks });
             }
             catch (Exception ex)
             {
