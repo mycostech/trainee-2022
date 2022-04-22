@@ -127,7 +127,7 @@
   }
 }
 
-.todo-add-item {
+.todo-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,6 +189,11 @@
         outline: none;
         padding: 0.5rem;
         border-bottom: 1px solid rgba(#fff, 0.4);
+        transition: all 0.5s ease-in-out;
+        &:focus {
+          font-size: 0.95rem;
+          border-bottom: 1px solid #ffffff;
+        }
       }
       & > div {
         font-size: 0.9rem;

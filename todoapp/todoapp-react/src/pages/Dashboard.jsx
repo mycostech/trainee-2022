@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import ToDoContainer from "../components/ToDoContainer";
-import ToDoAddItem from "../components/ToDoAddItem";
+import ToDoItem from "../components/ToDoItem";
 import { axiosHelper } from "../helpers/axiosHelper";
+import { ToDoContext } from "../contexts/ToDoContext";
 
 export default function Dashboard() {
   const amountPerPage = 4;
@@ -10,6 +11,13 @@ export default function Dashboard() {
   const [todos, setTodos] = useState([]);
   const [totalTodos, setTotalTodos] = useState(0);
   const [totalCompletedTodos, setTotalCompletedTodos] = useState(0);
+  const [currentTodo, setCurrentTodo] = useState(null);
+
+  const contextValue = useMemo(() => ({ currentTodo, setCurrentTodo }), [currentTodo]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -32,17 +40,19 @@ export default function Dashboard() {
   return (
     <>
       <div className="dashboard">
-        <ToDoContainer
-          props={{
-            todos,
-            totalTodos,
-            totalCompletedTodos,
-            currentPage,
-            amountPerPage,
-            setCurrentPage,
-          }}
-        />
-        <ToDoAddItem fetchData={fetchData} />
+        <ToDoContext.Provider value={contextValue}>
+          <ToDoContainer
+            props={{
+              todos,
+              totalTodos,
+              totalCompletedTodos,
+              currentPage,
+              amountPerPage,
+              setCurrentPage,
+            }}
+          />
+          {!currentTodo ? <ToDoItem formType={"ADD"} fetchData={fetchData} /> : <ToDoItem formType={"EDIT"} fetchData={fetchData} />}
+        </ToDoContext.Provider>
       </div>
     </>
   );

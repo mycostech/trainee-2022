@@ -3,9 +3,12 @@ import ToDoInfo from "./partials/ToDoInfo";
 import ToDoList from "./partials/ToDoList";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import Pagination from "./partials/Pagination";
+import { ToDoContext } from "../contexts/ToDoContext";
 
 export default function ToDoContainer({ props }) {
   const { todos, totalTodos, totalCompletedTodos, currentPage, amountPerPage, setCurrentPage } = props;
+
+  const { currentTodo, setCurrentTodo } = React.useContext(ToDoContext);
 
   return (
     <>
@@ -18,7 +21,7 @@ export default function ToDoContainer({ props }) {
             <div className="complete">
               COMPLETED <span className="circle-text">{totalCompletedTodos}</span>
             </div>
-            <div className="add-todo-button">
+            <div className="add-todo-button" onClick={() => setCurrentTodo(null)}>
               <AiOutlinePlusCircle />
             </div>
           </div>

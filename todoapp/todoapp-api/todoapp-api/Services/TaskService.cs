@@ -23,7 +23,7 @@ namespace todoapp_api.Services
             try
             {
                 // get tasks from ... to ...
-                var tasks = _context.Item.Where(x => x.UserId == userId && x.Status == Status.TODO).OrderBy(x => x.Priority).Skip(from).Take(to).ToList();
+                var tasks = _context.Item.Where(x => x.UserId == userId).OrderBy(x => x.Priority).Skip(from).Take(to).ToList();
                 return tasks;
             }
             catch (Exception ex)
