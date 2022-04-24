@@ -4,6 +4,7 @@ import ToDoList from "./partials/ToDoList";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import Pagination from "./partials/Pagination";
 import { ToDoContext } from "../contexts/ToDoContext";
+import toast from "react-hot-toast";
 
 export default function ToDoContainer({ props }) {
   const { todos, totalTodos, totalCompletedTodos, currentPage, amountPerPage, setCurrentPage } = props;
@@ -13,7 +14,7 @@ export default function ToDoContainer({ props }) {
   return (
     <>
       <div className="todo-container">
-        <ToDoInfo />
+        <ToDoInfo totalTodos={totalTodos} totalCompletedTodos={totalCompletedTodos} />
         <div className="todo-list">
           <h1>TODO LIST</h1>
           {todos && <ToDoList todos={todos} />}
@@ -21,7 +22,24 @@ export default function ToDoContainer({ props }) {
             <div className="complete">
               COMPLETED <span className="circle-text">{totalCompletedTodos}</span>
             </div>
-            <div className="add-todo-button" onClick={() => setCurrentTodo(null)}>
+            <div className="complete">
+              INCOMPLETE{" "}
+              <span
+                className="circle-text"
+                style={{
+                  backgroundColor: "#ff5c5c",
+                }}
+              >
+                {totalTodos - totalCompletedTodos}
+              </span>
+            </div>
+            <div
+              className="add-todo-button"
+              onClick={() => {
+                setCurrentTodo(null);
+                toast("Create new todo", { type: "success" });
+              }}
+            >
               <AiOutlinePlusCircle />
             </div>
           </div>

@@ -22,8 +22,9 @@ namespace todoapp_api.Services
         {
             try
             {
-                // get tasks from ... to ...
-                var tasks = _context.Item.Where(x => x.UserId == userId).OrderBy(x => x.Priority).Skip(from).Take(to).ToList();
+                // get tasks from ... to ... order by limited at and priority
+                var tasks = _context.Item.Where(x => x.UserId == userId).OrderBy(x => x.LimitedAt).ThenBy(x => x.Priority).Skip(from - 1).Take(to - from + 1).ToList();
+
                 return tasks;
             }
             catch (Exception ex)
@@ -39,7 +40,22 @@ namespace todoapp_api.Services
             try
             {
                 // get tasks count
-                var tasks = _context.Item.Where(x => x.UserId == userId && x.Status == Status.TODO).Count();
+                var tasks = _context.Item.Where(x => x.UserId == userId).Count();
+                return tasks;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
+        public int GetIncompleteTaskCount(int userId)
+        {
+            try
+            {
+                // get incomplete tasks count
+                var tasks = _context.Item.Where(x => x.UserId == userId && x.IsCompleted == false).Count();
                 return tasks;
             }
             catch (Exception ex)
@@ -54,7 +70,7 @@ namespace todoapp_api.Services
             try
             {
                 // get completed tasks count
-                var tasks = _context.Item.Where(x => x.UserId == userId && x.Status == Status.DONE).Count();
+                var tasks = _context.Item.Where(x => x.UserId == userId && x.IsCompleted == true).Count();
                 return tasks;
             }
             catch (Exception ex)
@@ -69,6 +85,37 @@ namespace todoapp_api.Services
             try
             {
                 _context.Item.Add(item);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<bool> UpdateTask(Item item)
+        {
+            try
+            {
+                _context.Item.Update(item);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<bool> DeleteTask(int id)
+        {
+            try
+            {
+                var item = await _context.Item.FindAsync(id);
+                _context.Item.Remove(item);
                 await _context.SaveChangesAsync();
                 return true;
             }

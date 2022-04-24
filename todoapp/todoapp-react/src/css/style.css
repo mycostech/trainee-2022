@@ -218,6 +218,9 @@ body {
   margin-top: 5px;
   font-size: 0.8rem;
   font-weight: 300;
+  min-height: 30px;
+  max-height: 30px;
+  overflow: hidden;
 }
 .todo-container .todo-list-item .date-time {
   display: flex;

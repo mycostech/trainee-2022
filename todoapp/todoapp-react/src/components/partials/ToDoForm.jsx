@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { BsPencil } from "react-icons/bs";
+import { BsPencil, BsTrash } from "react-icons/bs";
 import Select from "react-select";
-import { isCompletedOptions, statusOptions, priorityOptions } from "./todoOptions";
+import { isCompletedOptions, priorityOptions } from "./todoOptions";
 import toast from "react-hot-toast";
 import { axiosHelper } from "../../helpers/axiosHelper";
 import { ToDoContext } from "../../contexts/ToDoContext";
 import { dateToString, dateToTimeString } from "../../helpers/dateFormat";
 
-export default function TodoForm({ fetchData }) {
+export default function TodoForm({ formType, fetchData }) {
   const { currentTodo, setCurrentTodo } = React.useContext(ToDoContext);
 
   const [title, setTitle] = useState("");
@@ -15,7 +15,6 @@ export default function TodoForm({ fetchData }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [isCompleted, setIsCompleted] = useState(isCompletedOptions[0]);
-  const [status, setStatus] = useState(statusOptions[0]);
   const [priority, setPriority] = useState(priorityOptions[0]);
 
   useEffect(() => {
@@ -25,7 +24,6 @@ export default function TodoForm({ fetchData }) {
       setDate(dateToString(new Date(currentTodo.limitedAt)));
       setTime(dateToTimeString(new Date(currentTodo.limitedAt)));
       setIsCompleted(isCompletedOptions.find((option) => option.value === currentTodo.isCompleted));
-      setStatus(statusOptions.find((option) => option.value === currentTodo.status));
       setPriority(priorityOptions.find((option) => option.value === currentTodo.priority));
     } else {
       setTitle("");
@@ -33,7 +31,6 @@ export default function TodoForm({ fetchData }) {
       setDate("");
       setTime("");
       setIsCompleted(isCompletedOptions[0]);
-      setStatus(statusOptions[0]);
       setPriority(priorityOptions[0]);
     }
   }, [currentTodo]);
@@ -44,13 +41,20 @@ export default function TodoForm({ fetchData }) {
       toast.error("Title is required");
       return;
     }
+    if (formType == "ADD") {
+      addTask();
+    } else {
+      editTask();
+    }
+  };
+
+  const addTask = () => {
     axiosHelper
       .post("/api/task/create", {
         title,
         description,
         limitedAt: new Date(date + " " + time),
         isCompleted: isCompleted.value,
-        status: status.value,
         priority: priority.value,
       })
       .then((res) => {
@@ -61,7 +65,53 @@ export default function TodoForm({ fetchData }) {
           setDate("");
           setTime("");
           setIsCompleted(isCompletedOptions[0]);
-          setStatus(statusOptions[0]);
+          setPriority(priorityOptions[0]);
+          fetchData();
+        } else {
+          toast.error(res.data.message);
+        }
+      });
+  };
+
+  const editTask = () => {
+    axiosHelper
+      .post("/api/task/update", {
+        id: currentTodo.id,
+        title,
+        description,
+        limitedAt: new Date(date + " " + time),
+        isCompleted: isCompleted.value,
+        priority: priority.value,
+      })
+      .then((res) => {
+        if (res.data.success) {
+          toast.success(res.data.message);
+          setTitle("");
+          setDescription("");
+          setDate("");
+          setTime("");
+          setIsCompleted(isCompletedOptions[0]);
+          setPriority(priorityOptions[0]);
+          fetchData();
+        } else {
+          toast.error(res.data.message);
+        }
+      });
+  };
+
+  const handleDelete = () => {
+    axiosHelper
+      .post("/api/task/delete", {
+        id: currentTodo.id,
+      })
+      .then((res) => {
+        if (res.data.success) {
+          toast.success(res.data.message);
+          setTitle("");
+          setDescription("");
+          setDate("");
+          setTime("");
+          setIsCompleted(isCompletedOptions[0]);
           setPriority(priorityOptions[0]);
           fetchData();
         } else {
@@ -93,9 +143,11 @@ export default function TodoForm({ fetchData }) {
             value={time}
           />
           <Selector name="Is Completed" options={isCompletedOptions} onChange={setIsCompleted} value={isCompleted} />
-          <Selector name="Status" options={statusOptions} onChange={setStatus} value={status} />
           <Selector name="Priority" options={priorityOptions} onChange={setPriority} value={priority} />
-          <button onClick={handleSubmit}>
+          <button type="button" style={{ background: "#ed4646" }} onClick={handleDelete}>
+            DELETE YOUR THING <BsTrash />
+          </button>
+          <button type="submit" onClick={handleSubmit}>
             SAVE YOUR THING <BsPencil />
           </button>
         </form>

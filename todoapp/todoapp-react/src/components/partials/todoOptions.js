@@ -24,19 +24,4 @@ const priorityOptions = [
   },
 ];
 
-const statusOptions = [
-  {
-    label: "TO DO",
-    value: 0,
-  },
-  {
-    label: "IN PROGRESS",
-    value: 1,
-  },
-  {
-    label: "DONE",
-    value: 2,
-  },
-];
-
-export { isCompletedOptions, priorityOptions, statusOptions };
+export { isCompletedOptions, priorityOptions };

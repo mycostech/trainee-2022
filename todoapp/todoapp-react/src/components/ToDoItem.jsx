@@ -14,7 +14,7 @@ export default function ToDoItem({ formType, fetchData }) {
           <h1>{formType === "ADD" ? "Add New Thing" : `Edit ${currentTodo?.title}`}</h1>
           <div>{formType === "ADD" ? <HiOutlineDocumentText /> : <BsPencilSquare />}</div>
         </div>
-        <ToDoForm fetchData={fetchData} />
+        <ToDoForm formType={formType} fetchData={fetchData} />
       </div>
     </>
   );

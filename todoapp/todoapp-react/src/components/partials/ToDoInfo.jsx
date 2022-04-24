@@ -2,8 +2,8 @@ import React from "react";
 import { dateToString } from "../../helpers/dateFormat";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
-export default function ToDoInfo() {
-  const percentage = 66;
+export default function ToDoInfo({ totalTodos, totalCompletedTodos }) {
+  const percentage = totalTodos ? Math.round((totalCompletedTodos / totalTodos) * 100) : 0;
   return (
     <>
       <div className="todo-info">

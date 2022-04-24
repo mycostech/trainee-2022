@@ -4,13 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace todoapp_api.Models
 {
 
-    public enum Status
-    {
-        TODO,
-        IN_PROGRESS,
-        DONE
-    }
-
     public class Item
     {
         [Key]
@@ -24,8 +17,6 @@ namespace todoapp_api.Models
         public string? Description { get; set; }
         public string? Priority { get; set; }
         public bool? IsCompleted { get; set; }
-        public Status? Status { get; set; }
-        [StringLength(10)]
         public string? Color { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
